@@ -9,6 +9,8 @@ let seattle = {
     minCustomersPerHour: 23,
     maxCustomersPerHour: 65,
     avgCookiesPerSale: 6.3,
+    totalCookies: 0,
+    liArray: [],
     generateCustomersPerHour: function() {
         let customersPerHour = randomInRange(this.minCustomersPerHour, this.maxCustomersPerHour);
         return customersPerHour;
@@ -21,10 +23,23 @@ let seattle = {
     render: function() {
         let ulElem = document.getElementById(this.id);
         for (let i = 0; i < timeSlots.length; i++) {
+            let cookieNumber = this.calcCookiesPerHour()
             let liElem = document.createElement('li');
-            liElem.textContent = timeSlots[i] + ' : ' + this.calcCookiesPerHour() + ' cookies';
+            liElem.textContent = timeSlots[i] + ' : ' + cookieNumber + ' cookies';
             ulElem.appendChild(liElem);
+            this.liArray.push([timeSlots[i], cookieNumber]);
         }
+        for (let i = 0; i < this.liArray.length; i++) {
+            let target = this.liArray[i]
+            let number = target[1]
+            this.totalCookies += number
+        }
+        this.liArray.push(['total', this.totalCookies])
+        let liElem = document.createElement('li');
+        liElem.textContent = 'Total' + ' : ' + this.totalCookies + ' cookies';
+        ulElem.appendChild(liElem);
+        console.log(this.liArray)
+        console.log(this.totalCookies)
     },
 };
 
@@ -74,4 +89,3 @@ let timeSlots = [
 ];
 
 seattle.render()
-tokyo.render()
