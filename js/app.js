@@ -9,11 +9,6 @@ function CookieStand(id, location, minCustomersPerHour, maxCustomersPerHour, avg
     this.minCustomersPerHour = minCustomersPerHour;
     this.maxCustomersPerHour = maxCustomersPerHour;
     this.avgCookiesPerSale = avgCookiesPerSale;
-//     id: ?,
-//     location: ?,
-//     minCustomersPerHour: ?,
-//     maxCustomersPerHour: ?,
-//     avgCookiesPerSale: ?,
 }
 
 let standA = new CookieStand('seattle', 'SeattleStand', 23, 65, 6.3);
