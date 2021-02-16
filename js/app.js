@@ -1,7 +1,25 @@
 function randomInRange(min, max) {
     let range = max - min;
-    return Math.floor(Math.random() * (range +1)) + min;
+    return Math.floor(Math.random() * (range + 1)) + min;
 };
+
+function CookieStand(id, location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerSale) {
+    this.id = id;
+    this.location = location;
+    this.minCustomersPerHour = minCustomersPerHour;
+    this.maxCustomersPerHour = maxCustomersPerHour;
+    this.avgCookiesPerSale = avgCookiesPerSale;
+//     id: ?,
+//     location: ?,
+//     minCustomersPerHour: ?,
+//     maxCustomersPerHour: ?,
+//     avgCookiesPerSale: ?,
+}
+
+let standA = new CookieStand('seattle', 'SeattleStand', 23, 65, 6.3);
+let standB = new CookieStand('dubai', 'DubaiStand', 11, 38, 3.7);
+console.log(standA);
+console.log(standB);
 
 let seattle = {
     id: 'seattle',
@@ -10,7 +28,7 @@ let seattle = {
     maxCustomersPerHour: 65,
     avgCookiesPerSale: 6.3,
     totalCookies: 0,
-    liArray: [],
+    simulatedCookiesPerHourArray: [],
     generateCustomersPerHour: function() {
         let customersPerHour = randomInRange(this.minCustomersPerHour, this.maxCustomersPerHour);
         return customersPerHour;
@@ -27,18 +45,18 @@ let seattle = {
             let liElem = document.createElement('li');
             liElem.textContent = timeSlots[i] + ' : ' + cookieNumber + ' cookies';
             ulElem.appendChild(liElem);
-            this.liArray.push([timeSlots[i], cookieNumber]);
+            this.simulatedCookiesPerHourArray.push([timeSlots[i], cookieNumber]);
         }
-        for (let i = 0; i < this.liArray.length; i++) {
-            let target = this.liArray[i]
+        for (let i = 0; i < this.simulatedCookiesPerHourArray.length; i++) {
+            let target = this.simulatedCookiesPerHourArray[i]
             let number = target[1]
             this.totalCookies += number
         }
-        this.liArray.push(['total', this.totalCookies])
+        this.simulatedCookiesPerHourArray.push(['total', this.totalCookies])
         let liElem = document.createElement('li');
         liElem.textContent = 'Total' + ' : ' + this.totalCookies + ' cookies';
         ulElem.appendChild(liElem);
-        console.log(this.liArray)
+        console.log(this.simulatedCookiesPerHourArray)
         console.log(this.totalCookies)
     },
 };
