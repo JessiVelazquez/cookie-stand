@@ -90,13 +90,6 @@ CookieStand.prototype.calcCookiesPerHour = function() {
 }
 CookieStand.prototype.render = function() {
 
-    const article = document.createElement('article');
-    const profileContainer = document.getElementById(this.id);
-    profileContainer.appendChild(article);
-
-    const pElem = document.createElement('p');
-    profileContainer.appendChild(pElem);
-
     const tableElem = document.getElementById('table');
     const row2 = document.createElement('tr');
     tableElem.appendChild(row2);
