@@ -132,12 +132,12 @@ standDubai.generateCustomersPerHour();
 standDubai.calcCookiesPerHour();
 standDubai.render();
 
-let standParis = new CookieStand('paris', 'Paris', 20, 38, 2.8, 0)
+let standParis = new CookieStand('paris', 'Paris', 20, 38, 2.8, 0);
 standParis.generateCustomersPerHour();
 standParis.calcCookiesPerHour();
 standParis.render();
 
-let standLima = new CookieStand('lima', 'Lima', 2, 16, 4.6, 0)
+let standLima = new CookieStand('lima', 'Lima', 2, 16, 4.6, 0);
 standLima.generateCustomersPerHour();
 standLima.calcCookiesPerHour();
 standLima.render();
