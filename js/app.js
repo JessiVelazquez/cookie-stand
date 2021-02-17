@@ -46,14 +46,10 @@ function tableFooterRow() {
     rowFooter.appendChild(cellTotal);
     let globalTotal = 0
     for (let i = 0; i < timeSlots.length; i++) {
-        let locationTotal = 0
-        while (CookieStand.id = true) {
-            locationTotal += 
-        }
-        // standSeattle.cookiesPerHourArray[i][1] +
-        // standTokyo.cookiesPerHourArray[i][1] + standDubai.cookiesPerHourArray[i][1] +
-        // standParis.cookiesPerHourArray[i][1] + standLima.cookiesPerHourArray[i][1]
-        // console.log(locationTotal);
+        let locationTotal = standSeattle.cookiesPerHourArray[i][1] +
+        standTokyo.cookiesPerHourArray[i][1] + standDubai.cookiesPerHourArray[i][1] +
+        standParis.cookiesPerHourArray[i][1] + standLima.cookiesPerHourArray[i][1]
+        console.log(locationTotal);
         const cellTotal = document.createElement('td');
         cellTotal.textContent = locationTotal;
         rowFooter.appendChild(cellTotal);
