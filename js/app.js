@@ -39,8 +39,9 @@ function tableHeaderRow() {
 
 function tableFooterRow() {
     const tableElem = document.getElementById('table');
-    const rowFooter = document.createElement('tr')
-    const cellTotal = document.createElement('td')
+    const rowFooter = document.createElement('tr');
+    rowFooter.setAttribute('id', 'rowFooter');
+    const cellTotal = document.createElement('td');
     cellTotal.textContent = 'Totals';
     tableElem.appendChild(rowFooter);
     rowFooter.appendChild(cellTotal);
@@ -64,14 +65,14 @@ function tableFooterRow() {
 
 let allStands = [];
 
-function CookieStand(id, location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerSale, totalCookies, cookiesPerHourArray =[]) {
-    this.id = id;
+function CookieStand(location, minCustomersPerHour, maxCustomersPerHour, avgCookiesPerSale) {
+    this.id = location.toLowerCase();
     this.location = location;
     this.minCustomersPerHour = minCustomersPerHour;
     this.maxCustomersPerHour = maxCustomersPerHour;
     this.avgCookiesPerSale = avgCookiesPerSale;
-    this.totalCookies = totalCookies;
-    this.cookiesPerHourArray = cookiesPerHourArray;
+    this.totalCookies = 0;
+    this.cookiesPerHourArray = [];
     allStands.push(this);
 }
 
@@ -110,35 +111,51 @@ CookieStand.prototype.render = function() {
 
 tableHeaderRow();
 
-let standSeattle = new CookieStand('seattle', 'Seattle', 23, 65, 6.3, 0);
+let standSeattle = new CookieStand('Seattle', 23, 65, 6.3);
 standSeattle.generateCustomersPerHour();
 standSeattle.calcCookiesPerHour();
 standSeattle.render();
 
-let standTokyo = new CookieStand('tokyo', 'Tokyo', 3, 24, 1.2, 0);
+let standTokyo = new CookieStand('Tokyo', 3, 24, 1.2);
 standTokyo.generateCustomersPerHour();
 standTokyo.calcCookiesPerHour();
 standTokyo.render();
 
-let standDubai = new CookieStand('dubai', 'Dubai', 11, 38, 3.7, 0);
+let standDubai = new CookieStand('Dubai', 11, 38, 3.7);
 standDubai.generateCustomersPerHour();
 standDubai.calcCookiesPerHour();
 standDubai.render();
 
-let standParis = new CookieStand('paris', 'Paris', 20, 38, 2.8, 0);
+let standParis = new CookieStand('Paris', 20, 38, 2.8);
 standParis.generateCustomersPerHour();
 standParis.calcCookiesPerHour();
 standParis.render();
 
-let standLima = new CookieStand('lima', 'Lima', 2, 16, 4.6, 0);
+let standLima = new CookieStand('Lima', 2, 16, 4.6);
 standLima.generateCustomersPerHour();
 standLima.calcCookiesPerHour();
 standLima.render();
 
 tableFooterRow();
 
-console.log(standSeattle);
-console.log(standTokyo);
-console.log(standDubai);
-console.log(standParis);
-console.log(standLima);
+function submitHandler(event) {
+    event.preventDefault();
+    let newStand = new CookieStand(event.target.storeName.value,
+        event.target.minCustomers.value,
+        event.target.maxCustomers.value,
+        event.target.avgCookies.value
+        );
+    newStand.generateCustomersPerHour();
+    newStand.calcCookiesPerHour();
+    newStand.render();
+    oldFooter = document.getElementById("rowFooter");
+    oldFooter.remove();
+    tableFooterRow();
+}
+
+const form = document.getElementById('new-store-form');
+
+form.addEventListener('submit', submitHandler)
+
+
+
